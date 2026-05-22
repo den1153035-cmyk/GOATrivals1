@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CR7 • Cristiano Ronaldo — офіційний фан-сайт легенди. 967+ голів, 5 «Золотих м’ячів», рекорди та історія GOAT.">
+  <title>CR7 • Cristiano Ronaldo | Легенда Футболу</title>
+  
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- AOS анімації -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  
+  <!-- Font Awesome для іконок -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts (сучасний спортивний стиль) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #f4c542;
+      --red: #e30613;
+      --dark: #0a0a0a;
+      --accent: #111;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    
+    /* Навігація */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10, 10, 10, 0.98);
+      backdrop-filter: blur(12px);
+      z-index: 10000;
+      padding: 18px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(244, 197, 66, 0.2);
+      transition: all 0.4s ease;
+    }
+    
+    .cr7-logo {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .cr7-logo::after {
+      content: "⚽";
+      font-size: 1.8rem;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 35px;
+      align-items: center;
+    }
+    
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    nav a:hover {
+      color: var(--gold);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: -4px;
+      left: 0;
+      background: var(--gold);
+      transition: width 0.4s ease;
+    }
+    
+    nav a:hover::after { width: 100%; }
+    
+    /* Герой-секція */
+    header {
+      height: 100vh;
+      min-height: 700px;
+      background: linear-gradient(rgba(10,10,10,0.75), rgba(10,10,10,0.85)), 
+                  url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-content {
+      max-width: 1100px;
+      z-index: 2;
+    }
+    
+    .hero-content h1 {
+      font-size: clamp(4rem, 8vw, 7.5rem);
+      font-weight: 700;
+      letter-spacing: 12px;
+      color: var(--gold);
+      text-shadow: 0 0 40px rgba(244, 197, 66, 0.6);
+      margin-bottom: 15px;
+    }
+    
+    .hero-content .subtitle {
+      font-size: 2rem;
+      color: #ddd;
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 18px 48px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    
+    .btn:hover {
+      transform: translateY(-6px) scale(1.08);
+      box-shadow: 0 20px 40px rgba(227, 6, 19, 0.5);
+    }
+    
+    .btn-red {
+      background: linear-gradient(90deg, var(--red), #ff4d4d);
+      color: white;
+    }
+    
+    .btn-blue {
+      background: linear-gradient(90deg, #0033cc, #00aaff);
+      border: 3px solid #00ccff;
+      color: white;
+    }
+    
+    .btn-gold {
+      background: linear-gradient(90deg, #8B0000, #FF4500);
+      border: 3px solid var(--gold);
+      color: white;
+    }
+    
+    /* Секції */
+    section {
+      padding: 120px 8%;
+      position: relative;
+    }
+    
+    h2 {
+      font-size: 3.8rem;
+      text-align: center;
+      margin-bottom: 70px;
+      color: var(--gold);
+      position: relative;
+    }
+    
+    h2::after {
+      content: '';
+      width: 120px;
+      height: 5px;
+      background: var(--red);
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50px;
+    }
+    
+    .bio {
+      max-width: 1100px;
+      margin: 0 auto;
+      font-size: 1.25rem;
+      text-align: justify;
+      background: rgba(17,17,17,0.6);
+      padding: 50px;
+      border-radius: 20px;
+      border: 1px solid var(--gold);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    
+    /* Статистика */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .stat-card {
+      background: linear-gradient(145deg, #111, #1a1a1a);
+      padding: 50px 30px;
+      text-align: center;
+      border-radius: 20px;
+      border: 3px solid var(--gold);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-20px) scale(1.05);
+      box-shadow: 0 30px 60px rgba(244, 197, 66, 0.3);
+    }
+    
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 60%;
+      height: 300%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: skewX(-25deg);
+      animation: shine 6s linear infinite;
+    }
+    
+    .stat-number {
+      font-size: 4.2rem;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    
+    .stat-label {
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      color: #ddd;
+    }
+    
+    /* Таймлайн кар'єри */
+    .timeline {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: var(--gold);
+      opacity: 0.3;
+      border-radius: 50px;
+    }
+    
+    .timeline-item {
+      margin: 60px 0;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+    }
+    
+    .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+    
+    .timeline-content {
+      background: #111;
+      padding: 30px 40px;
+      border-radius: 20px;
+      flex: 1;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+    
+    .timeline-year {
+      background: var(--red);
+      color: white;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 8px rgba(227,6,19,0.3);
+      z-index: 2;
+    }
+    
+    /* Галерея */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    
+    .gallery img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: all 0.5s;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+    
+    .gallery img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 25px 50px rgba(244,197,66,0.4);
+    }
+    
+    /* Footer */
+    footer {
+      background: #000;
+      padding: 80px 8% 40px;
+      text-align: center;
+      border-top: 4px solid var(--gold);
+    }
+    
+    .footer-logo {
+      font-size: 3.5rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    
+    /* Анімація блиску */
+    @keyframes shine {
+      0% { transform: translateX(-150%) skewX(-25deg); }
+      100% { transform: translateX(300%) skewX(-25deg); }
+    }
+    
+    @media (max-width: 768px) {
+      nav ul { gap: 15px; font-size: 0.95rem; }
+      .hero-content h1 { letter-spacing: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Навігація (тепер з посиланнями на всі сторінки) -->
+  <nav>
+    <div class="cr7-logo">CR7</div>
+    <ul>
+      <li><a href="index.html"><i class="fas fa-home"></i> CR7</a></li>
+      <li><a href="#bio">Біографія</a></li>
+      <li><a href="#stats">Статистика</a></li>
+      <li><a href="#career">Кар'єра</a></li>
+      <li><a href="#achievements">Досягнення</a></li>
+      <li><a href="messi.html"><i class="fas fa-futbol"></i> Lionel Messi</a></li>
+      <li><a href="elklas.html" class="btn-gold" style="padding: 8px 24px; font-size: 1rem; border-radius: 50px; display: inline-flex; align-items: center; gap: 8px;">
+        <i class="fas fa-trophy"></i> Ель Класіко
+      </a></li>
+    </ul>
+  </nav>
+
+  <!-- Герой-секція з покращеною анімацією -->
+  <header id="home">
+    <div class="hero-content" data-aos="zoom-out">
+      <h1>Cristiano Ronaldo</h1>
+      <p class="subtitle">967+ ГОЛІВ • 5 «ЗОЛОТИХ М’ЯЧІВ» • GOAT</p>
+      
+      <div class="hero-buttons">
+        <button onclick="document.getElementById('bio').scrollIntoView({behavior: 'smooth'})" class="btn btn-red">
+          <i class="fas fa-arrow-down"></i> Дізнатися історію CR7
+        </button>
+        
+        <button onclick="window.location.href='messi.html'" class="btn btn-blue">
+          <i class="fas fa-futbol"></i> Перейти до Messi
+        </button>
+        
+        <button onclick="window.location.href='elklas.html'" class="btn btn-gold">
+          <i class="fas fa-fire"></i> Ель Класіко: Ronaldo vs Messi
+        </button>
+      </div>
+      
+      <div style="margin-top: 60px; font-size: 1.4rem; color: var(--gold);">
+        <i class="fas fa-arrow-down fa-bounce"></i> Прокручуй, щоб відчути легенду
+      </div>
+    </div>
+    
+    <!-- Декоративний елемент Siuuu -->
+    <div style="position: absolute; bottom: 40px; right: 40px; font-size: 6rem; opacity: 0.15; transform: rotate(12deg); pointer-events: none;" data-aos="fade-up" data-aos-delay="800">
+      SIUUUUU!
+    </div>
+  </header>
+
+  <!-- БІОГРАФІЯ (розширена та актуальна) -->
+  <section id="bio">
+    <h2 data-aos="fade-up">Хто такий CR7?</h2>
+    <div class="bio" data-aos="fade-up" data-aos-delay="200">
+      <p><strong>Кріштіано Роналду душ Сантуш Авейру</strong> (нар. 5 лютого 1985, Мадейра, Португалія) — португальський футболіст, форвард та капітан «Аль-Насра» (Саудівська Аравія) і збірної Португалії.</p>
+      <p>Він — перший футболіст в історії, який подолав позначку <strong>900 офіційних голів</strong> ще у 2024 році. Станом на квітень 2026 року його загальний доробок перевищує <strong>967 голів</strong> у клубній та міжнародній кар’єрі.</p>
+      <p>Роналду виграв 34 трофеї на клубному рівні, включаючи 5 Ліг чемпіонів УЄФА, 3 Прем’єр-ліги, 2 Ла Ліги та багато інших. П’ятиразовий володар «Золотого м’яча» (2008, 2013, 2014, 2016, 2017). Рекордсмен за кількістю голів за збірну (143) та кількістю матчів на Євро.</p>
+      <p>З 2023 року грає за «Аль-Наср», де продовжує ламати рекорди. У 2026 році він залишається одним із найефективніших нападників світу у 41 рік.</p>
+      <p><strong>Слоган:</strong> «Ніколи не здавайся. Тренуйся. Перемагай. Повторюй.»</p>
+    </div>
+  </section>
+
+  <!-- СТАТИСТИКА з анімованими лічильниками -->
+  <section id="stats" style="background: #111;">
+    <h2 data-aos="fade-up">Неймовірна статистика CR7</h2>
+    <div class="stats-grid">
+      <div class="stat-card" data-aos="flip-left">
+        <div class="stat-number" data-count="967">0</div>
+        <div class="stat-label">Офіційних голів у кар’єрі</div>
+      </div>
+      <div class="stat-card" data-aos="flip-left" data-aos-delay="200">
+        <div class="stat-number" data-count="143">0</div>
+        <div class="stat-label">Голів за збірну Португалії</div>
+      </div>
+      <div class="stat-card" data-aos="flip-left" data-aos-delay="400">
+        <div class="stat-number" data-count="34">0</div>
+        <div class="stat-label">Трофеїв (клуб + збірна)</div>
+      </div>
+      <div class="stat-card" data-aos="flip-left" data-aos-delay="600">
+        <div class="stat-number" data-count="5">0</div>
+        <div class="stat-label">«Золотих м’ячів» Ballon d’Or</div>
+      </div>
+      <div class="stat-card" data-aos="flip-left" data-aos-delay="800">
+        <div class="stat-number" data-count="1300">0</div>
+        <div class="stat-label">Професійних матчів</div>
+      </div>
+      <div class="stat-card" data-aos="flip-left" data-aos-delay="1000">
+        <div class="stat-number" data-count="140">0</div>
+        <div class="stat-label">Голів у Лізі чемпіонів УЄФА</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КАР'ЄРА (таймлайн) -->
+  <section id="career">
+    <h2 data-aos="fade-up">Кар’єра легенди</h2>
+    <div class="timeline" data-aos="fade-up">
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2003</div>
+        <div class="timeline-content">
+          <h3>Дебют у «Манчестер Юнайтед»</h3>
+          <p>Перехід із «Спортінга» за £12 млн. Перший «Золотий м’яч» у 2008 році.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2009</div>
+        <div class="timeline-content">
+          <h3>Рекордний трансфер у «Реал Мадрид»</h3>
+          <p>€94 млн — найвища сума на той час. 450 голів за 9 сезонів.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2018</div>
+        <div class="timeline-content">
+          <h3>«Ювентус» та повернення в «МЮ»</h3>
+          <p>Два «Скудетто» та емоційне повернення на «Олд Траффорд».</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-content">
+          <h3>Перехід в «Аль-Наср»</h3>
+          <p>123 голи за клуб за 3 сезони. Продовжує писати історію у 41 рік.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2026</div>
+        <div class="timeline-content">
+          <h3>Сьогодні</h3>
+          <p>Капітан Португалії та «Аль-Насра». Готується до ЧС-2026.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ДОсягнення -->
+  <section id="achievements" style="background: #111;">
+    <h2 data-aos="fade-up">Головні досягнення</h2>
+    <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+      <div class="stat-card" data-aos="zoom-in">
+        <i class="fas fa-trophy" style="font-size: 4rem; color: var(--gold); margin-bottom: 20px;"></i>
+        <h3>5× Ліга чемпіонів</h3>
+        <p>Рекордсмен за голами (140)</p>
+      </div>
+      <div class="stat-card" data-aos="zoom-in" data-aos-delay="150">
+        <i class="fas fa-medal" style="font-size: 4rem; color: var(--gold); margin-bottom: 20px;"></i>
+        <h3>ЧЄ-2016</h3>
+        <p>Перемога зі збірною Португалії</p>
+      </div>
+      <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
+        <i class="fas fa-star" style="font-size: 4rem; color: var(--gold); margin-bottom: 20px;"></i>
+        <h3>5× Ballon d’Or</h3>
+        <p>2008, 2013–2014, 2016–2017</p>
+      </div>
+      <div class="stat-card" data-aos="zoom-in" data-aos-delay="450">
+        <i class="fas fa-globe" style="font-size: 4rem; color: var(--gold); margin-bottom: 20px;"></i>
+        <h3>Рекорди</h3>
+        <p>Найбільше голів за збірну • Найбільше голів у ЛЧ</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ГАЛЕРЕЯ (з анімаціями) -->
+  <section>
+    <h2 data-aos="fade-up">Моменти легенди</h2>
+    <div class="gallery">
+      <img src="https://picsum.photos/id/1015/800/600" alt="CR7 гол" data-aos="fade-up">
+      <img src="https://picsum.photos/id/1005/800/600" alt="CR7 святкування" data-aos="fade-up" data-aos-delay="150">
+      <img src="https://picsum.photos/id/201/800/600" alt="CR7 з трофеєм" data-aos="fade-up" data-aos-delay="300">
+      <img src="https://picsum.photos/id/1009/800/600" alt="CR7 Siuuu" data-aos="fade-up" data-aos-delay="450">
+    </div>
+  </section>
+
+  <!-- ФУТЕР -->
+  <footer>
+    <div class="footer-logo">CR7</div>
+    <p style="font-size: 1.4rem; margin-bottom: 15px;">© 2026 • Фан-сайт Cristiano Ronaldo</p>
+    <p style="opacity: 0.8;">Siuuuuu! ⚽ • Легенда назавжди</p>
+    <div style="margin-top: 40px; font-size: 0.9rem; opacity: 0.6;">
+      Сайт створений з любов’ю до футболу • Анімації: GSAP + AOS
+    </div>
+  </footer>
+
+  <script>
+    // Ініціалізація AOS
+    AOS.init({
+      duration: 1200,
+      once: true,
+      offset: 100
+    });
+
+    // GSAP реєстрація
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Анімація заголовка в hero
+    gsap.from(".hero-content h1", {
+      y: 120,
+      opacity: 0,
+      duration: 1.8,
+      ease: "power4.out"
+    });
+
+    // Плавний скрол по навігації
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Анімація лічильників статистики
+    function animateCounter(el) {
+      const target = parseInt(el.getAttribute('data-count'));
+      let count = 0;
+      const increment = Math.ceil(target / 60);
+      
+      const timer = setInterval(() => {
+        count += increment;
+        if (count >= target) {
+          count = target;
+          clearInterval(timer);
+        }
+        el.textContent = count.toLocaleString('uk-UA') + (target > 100 ? '+' : '');
+      }, 30);
+    }
+
+    // Запуск лічильників при появі секції
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const numbers = entry.target.querySelectorAll('.stat-number');
+          numbers.forEach(num => {
+            if (!num.classList.contains('animated')) {
+              num.classList.add('animated');
+              animateCounter(num);
+            }
+          });
+        }
+      });
+    }, { threshold: 0.6 });
+
+    // Спостерігаємо за секцією stats
+    const statsSection = document.getElementById('stats');
+    if (statsSection) observer.observe(statsSection);
+
+    // Додатковий ефект на скрол для навбару
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.style.padding = '12px 5%';
+        nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.6)';
+      } else {
+        nav.style.padding = '18px 5%';
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    console.log('%c✅ CR7 сайт успішно покращений! Професійний дизайн, сучасні анімації та актуальна інформація 2026 року.', 'color:#f4c542; font-size:18px; font-weight:bold');
+  </script>
+</body>
+</html>
