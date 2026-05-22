@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ель Класіко: Cristiano Ronaldo vs Lionel Messi — найбільше протистояння в історії футболу.">
+  <title>Ель Класіко • Ronaldo vs Messi</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --red: #e30613;
+      --blue: #0033cc;
+      --gold: #f4c542;
+      --dark: #0a0a0a;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 4px; text-transform: uppercase; }
+    
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10,10,10,0.98);
+      backdrop-filter: blur(12px);
+      z-index: 10000;
+      padding: 18px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--gold);
+    }
+    
+    .clasico-logo {
+      font-size: 2.6rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--red), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 6px;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover { color: var(--gold); }
+    
+    header {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), 
+                  url('https://picsum.photos/id/201/2000/1200') center/cover no-repeat fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero-content h1 {
+      font-size: clamp(4.5rem, 9vw, 8rem);
+      background: linear-gradient(90deg, var(--red), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+    
+    .vs {
+      font-size: 5.5rem;
+      color: var(--gold);
+      margin: 25px 0;
+      text-shadow: 0 0 50px var(--gold);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+    
+    .btn {
+      padding: 16px 45px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 12px;
+      transition: all 0.4s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .btn-red { background: var(--red); color: white; }
+    .btn-blue { background: var(--blue); color: white; }
+    .btn-gold { background: linear-gradient(90deg, #8B0000, #FF4500); color: white; border: 2px solid var(--gold); }
+    
+    section { padding: 120px 8%; }
+    
+    h2 {
+      font-size: 3.8rem;
+      text-align: center;
+      margin-bottom: 80px;
+      color: var(--gold);
+    }
+    
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      gap: 30px;
+      max-width: 1300px;
+      margin: 0 auto;
+      align-items: center;
+    }
+    
+    .player-card {
+      background: linear-gradient(145deg, #1a1a1a, #111);
+      padding: 50px 40px;
+      border-radius: 25px;
+      text-align: center;
+      transition: all 0.6s;
+      border: 4px solid;
+    }
+    
+    .ronaldo-card { border-color: var(--red); }
+    .messi-card { border-color: var(--blue); }
+    
+    .player-card:hover {
+      transform: translateY(-15px);
+    }
+    
+    .player-name {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+    
+    .stat-big {
+      font-size: 4.8rem;
+      font-weight: 700;
+      margin: 25px 0 10px;
+    }
+    
+    footer {
+      background: #000;
+      padding: 90px 8% 50px;
+      text-align: center;
+      border-top: 5px solid var(--gold);
+    }
+    
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    
+    .gallery img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: 0.5s;
+    }
+    
+    .gallery img:hover {
+      transform: scale(1.07);
+    }
+  </style>
+</head>
+<body>
+  <!-- Навігація -->
+  <nav>
+    <div class="clasico-logo">EL CLÁSICO</div>
+    <ul>
+      <li><a href="index.html">CR7</a></li>
+      <li><a href="messi.html">Messi</a></li>
+      <li><a href="#stats">Порівняння</a></li>
+      <li><a href="#history">Історія</a></li>
+    </ul>
+  </nav>
+
+  <!-- Герой секція -->
+  <header>
+    <div class="hero-content" data-aos="fade-up">
+      <h1>EL CLÁSICO</h1>
+      <div class="vs">RONALDO <span style="color:#fff;">VS</span> MESSI</div>
+      <p style="font-size: 2rem; margin: 30px 0 40px;">Найвеличніше протистояння в історії футболу</p>
+      
+      <div>
+        <button onclick="window.location.href='index.html'" class="btn btn-red">
+          <i class="fas fa-arrow-left"></i> Cristiano Ronaldo
+        </button>
+        <button onclick="window.location.href='messi.html'" class="btn btn-blue">
+          Lionel Messi <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Порівняння -->
+  <section id="stats" style="background: #111;">
+    <h2 data-aos="fade-up">Порівняння легенд</h2>
+    <div class="comparison">
+      <div class="player-card ronaldo-card" data-aos="fade-right">
+        <div class="player-name" style="color: var(--red);">Cristiano Ronaldo</div>
+        <div class="stat-big" style="color: var(--red);">967+</div>
+        <p>Голів у кар'єрі</p>
+        <div class="stat-big" style="color: var(--red); font-size: 3.2rem; margin-top: 40px;">5</div>
+        <p>Золотих м'ячів</p>
+      </div>
+
+      <div style="text-align: center; font-size: 5rem; color: var(--gold); font-weight: bold;" data-aos="zoom-in">VS</div>
+
+      <div class="player-card messi-card" data-aos="fade-left">
+        <div class="player-name" style="color: var(--blue);">Lionel Messi</div>
+        <div class="stat-big" style="color: var(--blue);">900+</div>
+        <p>Голів у кар'єрі</p>
+        <div class="stat-big" style="color: var(--blue); font-size: 3.2rem; margin-top: 40px;">8</div>
+        <p>Золотих м'ячів</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Історія -->
+  <section id="history">
+    <h2 data-aos="fade-up">Історія протистояння</h2>
+    <div style="max-width: 1100px; margin: 0 auto; text-align: center; font-size: 1.3rem;">
+      <p data-aos="fade-up">За час виступів у Ла Лізі Роналду та Мессі провели один проти одного понад <strong>35 матчів</strong> в Ель Класіко.</p>
+      <p data-aos="fade-up" data-aos-delay="200">Обидва гравці забили по 18 голів у цих матчах — абсолютна рівність.</p>
+    </div>
+  </section>
+
+  <!-- Галерея -->
+  <section style="background:#111;">
+    <h2 data-aos="fade-up">Незабутні моменти</h2>
+    <div class="gallery">
+      <img src="https://picsum.photos/id/201/800/600" alt="Ronaldo vs Messi" data-aos="fade-up">
+      <img src="https://picsum.photos/id/1015/800/600" alt="Класіко" data-aos="fade-up" data-aos-delay="150">
+      <img src="https://picsum.photos/id/1027/800/600" alt="Мессі" data-aos="fade-up" data-aos-delay="300">
+      <img src="https://picsum.photos/id/1005/800/600" alt="Роналду" data-aos="fade-up" data-aos-delay="450">
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer>
+    <div style="font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; background: linear-gradient(90deg, var(--red), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+      EL CLÁSICO
+    </div>
+    <p style="font-size: 1.4rem;">© 2026 • Фан-сайт Ronaldo vs Messi</p>
+    <p style="margin-top: 20px; opacity: 0.8;">Siuuuu! • ¡Vamos! ⚽</p>
+  </footer>
+
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Анімація заголовка
+    gsap.from(".hero-content h1", { 
+      y: 100, 
+      opacity: 0, 
+      duration: 1.6, 
+      ease: "power4.out" 
+    });
+
+    // Плавний скрол для навігації
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    console.log('%c✅ elklas.html успішно оновлено!', 'color: #f4c542; font-size: 16px;');
+  </script>
+</body>
+</html>
